@@ -1,0 +1,36 @@
+{% extends "portfolio/base.html" %}
+{% block title %}{{ project.title }} — {{ profile.name }}{% endblock %}
+{% block content %}
+<section class="case">
+  <div class="container narrow">
+    <p class="back"><a href="{% url 'home' %}#works">← Back to Projects</a></p>
+    <span class="pill"><b>Case</b> Study · {{ project.year }}</span>
+    <h1 class="case-title">{{ project.title }}</h1>
+    <p class="lede">{{ project.summary }}</p>
+
+    {% if project.banner or project.image %}
+    <div class="shots {% if project.banner and project.image %}two{% endif %}">
+      {% if project.banner %}<img src="{{ project.banner.url }}" alt="{{ project.title }} cover">{% endif %}
+      {% if project.image %}<img src="{{ project.image.url }}" alt="{{ project.title }} dashboard">{% endif %}
+    </div>
+    {% endif %}
+
+    <p class="chips">
+      {% for t in project.tech_list %}<span class="chip">{{ t }}</span>{% endfor %}
+      {% for t in project.analysis_list %}<span class="chip alt">{{ t }}</span>{% endfor %}
+    </p>
+
+    {% if project.problem %}<h3 class="caps sub">The question</h3>{{ project.problem|linebreaks }}{% endif %}
+    {% if project.description %}<h3 class="caps sub">The approach</h3>{{ project.description|linebreaks }}{% endif %}
+    {% if project.result %}<h3 class="caps sub">The result</h3>{{ project.result|linebreaks }}{% endif %}
+
+    <p class="links">
+      {% if project.dashboard_url %}<a class="btn sm" href="{{ project.dashboard_url }}" target="_blank" rel="noopener">Dashboard</a>{% endif %}
+      {% if project.deck_url %}<a class="btn sm ghost" href="{{ project.deck_url }}" target="_blank" rel="noopener">Full deck</a>{% endif %}
+      {% if project.notebook_url %}<a class="btn sm ghost" href="{{ project.notebook_url }}" target="_blank" rel="noopener">Notebook</a>{% endif %}
+      {% if project.live_url %}<a class="btn sm ghost" href="{{ project.live_url }}" target="_blank" rel="noopener">Live</a>{% endif %}
+      {% if project.repo_url %}<a class="btn sm ghost" href="{{ project.repo_url }}" target="_blank" rel="noopener">Code</a>{% endif %}
+    </p>
+  </div>
+</section>
+{% endblock %}

@@ -1,0 +1,162 @@
+{% extends "portfolio/base.html" %}
+{% load portfolio_extras %}
+{% block content %}
+
+{# ================= HOME / HERO ================= #}
+<section id="home" class="hero">
+  <div class="container hero-grid">
+    <div class="hero-text">
+      <span class="pill"><b>{{ profile.headline }}</b> Portfolio</span>
+      <h1><span class="nm hl">{{ profile.name }}</span></h1>
+      <p class="hero-tag">{{ profile.tagline }}</p>
+      <p class="cta">
+        <a class="btn" href="#works">View Projects</a>
+        {% if profile.cv %}<a class="btn ghost" href="{{ profile.cv.url }}" download>Download CV</a>{% endif %}
+      </p>
+    </div>
+    <figure class="avatar" aria-label="Portrait of {{ profile.name }}">
+      <div class="avatar-inner">
+        {% if profile.photo %}<img src="{{ profile.photo.url }}" alt="{{ profile.name }}">
+        {% else %}<span class="ini">{{ profile.name|initial }}</span>{% endif %}
+      </div>
+    </figure>
+  </div>
+  <a class="scroll" href="#about" aria-label="Scroll down"><svg class="ico"><use href="#i-down"/></svg></a>
+</section>
+
+{# ================= ABOUT ME ================= #}
+<section id="about">
+  <div class="container about-grid">
+    <h2 class="hello">Hello,<br>I’m <span class="hl">{{ profile.short_name }}</span>!</h2>
+    <div>
+      {% if profile.about %}{{ profile.about|linebreaks }}
+      {% elif profile.intro %}<p>{{ profile.intro }}</p>
+      {% else %}<p>Add your story in the admin panel: what drew you to data, the problems you enjoy, and the role you are looking for.</p>{% endif %}
+      <div class="icon-row">
+        {% if profile.linkedin %}<a class="circle" href="{{ profile.linkedin }}" target="_blank" rel="noopener" aria-label="LinkedIn"><svg class="ico"><use href="#i-linkedin"/></svg></a>{% endif %}
+        {% if profile.github %}<a class="circle" href="{{ profile.github }}" target="_blank" rel="noopener" aria-label="GitHub"><svg class="ico"><use href="#i-github"/></svg></a>{% endif %}
+        {% if profile.whatsapp_url %}<a class="circle" href="{{ profile.whatsapp_url }}" target="_blank" rel="noopener" aria-label="WhatsApp"><svg class="ico"><use href="#i-phone"/></svg></a>{% endif %}
+        {% if profile.email %}<a class="circle" href="mailto:{{ profile.email }}" aria-label="E-mail"><svg class="ico"><use href="#i-mail"/></svg></a>{% endif %}
+        <a class="btn ghost" href="#works">Projects</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+{# ================= SKILLS ================= #}
+<section id="skills">
+  <div class="container">
+    <span class="pill"><b>Technical</b> Skills</span>
+    <div class="skill-cols">
+      {% for cat, items in skills.items %}
+      <div class="skill-col">
+        <h3 class="two-tone"><span class="hl">{{ cat|firstword }}</span> {{ cat|restwords }}</h3>
+        <ul class="skill-list">
+          {% for s in items %}
+          <li>
+            {% if s.icon %}<span class="circle sm"><img src="{{ s.icon.url }}" alt=""></span>
+            {% else %}<span class="dot"></span>{% endif %}
+            <span>{{ s.name }}</span>
+          </li>
+          {% endfor %}
+        </ul>
+      </div>
+      {% empty %}<p><em>Add skills in the admin panel.</em></p>{% endfor %}
+    </div>
+  </div>
+</section>
+
+{# ================= BACKGROUND ================= #}
+<section id="background">
+  <div class="container">
+    <span class="pill"><b>Education &amp; Experience</b> Background</span>
+    <div class="two-col">
+      <div>
+        <h3 class="caps">Education</h3>
+        {% for e in education %}
+          {% include "portfolio/_entry.html" %}
+        {% empty %}<p><em>No entries yet.</em></p>{% endfor %}
+        {% if courses %}
+        <h3 class="caps sub">Courses &amp; Certifications</h3>
+        {% for e in courses %}{% include "portfolio/_entry.html" %}{% endfor %}
+        {% endif %}
+      </div>
+      <div class="divided">
+        <h3 class="caps">Experience</h3>
+        {% for e in work %}
+          {% include "portfolio/_entry.html" %}
+        {% empty %}<p><em>No entries yet.</em></p>{% endfor %}
+      </div>
+    </div>
+  </div>
+</section>
+
+{# ================= PROJECTS ================= #}
+<section id="works">
+  <div class="container">
+    <span class="pill"><b>Notable</b> Projects</span>
+    {% for p in projects %}
+    <article class="project">
+      <h3 class="ptitle"><span class="pnum">{{ forloop.counter|stringformat:"02d" }}</span>
+        <a href="{% url 'project' p.pk %}">{{ p.title }}</a></h3>
+      {% if p.banner or p.image %}
+      <div class="shots {% if p.banner and p.image %}two{% endif %}">
+        {% if p.banner %}<img src="{{ p.banner.url }}" alt="{{ p.title }} cover">{% endif %}
+        {% if p.image %}<img src="{{ p.image.url }}" alt="{{ p.title }} dashboard">{% endif %}
+      </div>
+      {% endif %}
+      <div class="pbody">
+        <p>{{ p.summary }}</p>
+        {% if p.result %}<p class="result"><b>Result.</b> {{ p.result|truncatewords:34 }}</p>{% endif %}
+        <p class="chips">
+          {% for t in p.tech_list %}<span class="chip">{{ t }}</span>{% endfor %}
+          {% for t in p.analysis_list %}<span class="chip alt">{{ t }}</span>{% endfor %}
+        </p>
+        <p class="links">
+          <a class="btn sm" href="{% url 'project' p.pk %}">Case study</a>
+          {% if p.dashboard_url %}<a class="btn sm ghost" href="{{ p.dashboard_url }}" target="_blank" rel="noopener">Dashboard</a>{% endif %}
+          {% if p.deck_url %}<a class="btn sm ghost" href="{{ p.deck_url }}" target="_blank" rel="noopener">Full deck</a>{% endif %}
+          {% if p.notebook_url %}<a class="btn sm ghost" href="{{ p.notebook_url }}" target="_blank" rel="noopener">Notebook</a>{% endif %}
+          {% if p.repo_url %}<a class="btn sm ghost" href="{{ p.repo_url }}" target="_blank" rel="noopener">Code</a>{% endif %}
+        </p>
+      </div>
+    </article>
+    {% empty %}<p><em>Add projects in the admin panel.</em></p>{% endfor %}
+  </div>
+</section>
+
+{# ================= CONTACT ================= #}
+<section id="contact">
+  <div class="container">
+    <span class="pill"><b>Contact</b> Info</span>
+    <div class="contact-grid">
+      <ul class="contact-list">
+        {% if profile.phone %}<li><span class="circle"><svg class="ico"><use href="#i-phone"/></svg></span>
+          <div><small>Phone (WhatsApp)</small>
+          {% if profile.whatsapp_url %}<a href="{{ profile.whatsapp_url }}" target="_blank" rel="noopener">{{ profile.phone }}</a>{% else %}{{ profile.phone }}{% endif %}</div></li>{% endif %}
+        {% if profile.email %}<li><span class="circle"><svg class="ico"><use href="#i-mail"/></svg></span>
+          <div><small>E-mail</small><a href="mailto:{{ profile.email }}">{{ profile.email }}</a></div></li>{% endif %}
+        {% if profile.linkedin %}<li><span class="circle"><svg class="ico"><use href="#i-linkedin"/></svg></span>
+          <div><small>LinkedIn</small><a href="{{ profile.linkedin }}" target="_blank" rel="noopener">{{ profile.linkedin }}</a></div></li>{% endif %}
+        {% if profile.github %}<li><span class="circle"><svg class="ico"><use href="#i-github"/></svg></span>
+          <div><small>GitHub</small><a href="{{ profile.github }}" target="_blank" rel="noopener">{{ profile.github }}</a></div></li>{% endif %}
+        {% if profile.kaggle %}<li><span class="circle"><svg class="ico"><use href="#i-link"/></svg></span>
+          <div><small>Kaggle</small><a href="{{ profile.kaggle }}" target="_blank" rel="noopener">{{ profile.kaggle }}</a></div></li>{% endif %}
+        {% if profile.tableau %}<li><span class="circle"><svg class="ico"><use href="#i-link"/></svg></span>
+          <div><small>Tableau Public</small><a href="{{ profile.tableau }}" target="_blank" rel="noopener">{{ profile.tableau }}</a></div></li>{% endif %}
+        {% if profile.location %}<li><span class="circle"><svg class="ico"><use href="#i-pin"/></svg></span>
+          <div><small>Based in</small>{{ profile.location }}</div></li>{% endif %}
+      </ul>
+
+      <div>
+        <h2 class="connect">Let’s <span class="hl">connect</span> and <span class="hl">work together</span>!</h2>
+        {% for m in messages %}<p class="notice">{{ m }}</p>{% endfor %}
+        <form class="card form" method="post" action="{% url 'home' %}#contact">{% csrf_token %}
+          {{ form.as_p }}
+          <button class="btn" type="submit">Send message</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

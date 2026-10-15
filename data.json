@@ -1,0 +1,192 @@
+[
+{
+  "model": "portfolio.profile",
+  "pk": 1,
+  "fields": {
+    "name": "Sibi Manikandan V",
+    "nickname": "Sibi",
+    "headline": "Data Analyst",
+    "tagline": "Transform data into strategical insights",
+    "photo": "profile/Sibi_photo.png",
+    "intro": "B.Sc. Computer Science graduate with hands-on experience in SQL, Python, MySQL, and Power BI through data analytics projects. Passionate about transforming data into meaningful insights and eager to grow in data analytics and data engineering.",
+    "about": "B.Sc. Computer Science graduate with hands-on experience in SQL, Python, MySQL, and Power BI through data analytics projects. Passionate about transforming data into meaningful insights and eager to grow in data analytics and data engineering.",
+    "cv": "cv/SIBI_MANIKANDAN_V_Resume.pdf",
+    "email": "v.sibimanikandan@gmail.com",
+    "phone": "+91 944450 7715",
+    "location": "Chennai",
+    "linkedin": "",
+    "github": "https://github.com/Sibiart",
+    "kaggle": "",
+    "tableau": ""
+  }
+},
+{
+  "model": "portfolio.experience",
+  "pk": 1,
+  "fields": {
+    "kind": "edu",
+    "title": "BSc Computer Science",
+    "organisation": "Madras University",
+    "logo": "logos/kindpng_6091322.png",
+    "period": "2023-2026",
+    "description": "Pursued a Bachelor of Science in Computer Science at KCS Kasi Nadar College, affiliated with the University of Madras.",
+    "order": 1
+  }
+},
+{
+  "model": "portfolio.experience",
+  "pk": 2,
+  "fields": {
+    "kind": "cert",
+    "title": "Python Programming Course",
+    "organisation": "MYFSCS",
+    "logo": "logos/MYFSCS.jpeg",
+    "period": "Jan 2023 - Present",
+    "description": "A Python Programming course focused on data analytics, covering programming fundamentals, data manipulation, and analysis techniques, along with Django framework basics for web application development.",
+    "order": 1
+  }
+},
+{
+  "model": "portfolio.experience",
+  "pk": 3,
+  "fields": {
+    "kind": "work",
+    "title": "Data Analyst Trainee",
+    "organisation": "Academic Learning / Self-Directed Projects",
+    "logo": "logos/icons8-experience-64.png",
+    "period": "2026 - Present",
+    "description": "Data Analyst Trainee focusing on real-world datasets. Cleaning and analyzing data using Pandas, writing SQL queries in MySQL, and creating visualizations with Matplotlib, Seaborn and Power Bi. Documenting all projects in Jupyter Notebook and VS Code on GitHub. Seeking entry-level opportunity to apply skills.",
+    "order": 0
+  }
+},
+{
+  "model": "portfolio.skill",
+  "pk": 1,
+  "fields": {
+    "name": "Python",
+    "category": "Programming Languages",
+    "icon": "skills/python.png",
+    "order": 0
+  }
+},
+{
+  "model": "portfolio.skill",
+  "pk": 2,
+  "fields": {
+    "name": "SQL",
+    "category": "Programming Languages",
+    "icon": "skills/sql-server.png",
+    "order": 1
+  }
+},
+{
+  "model": "portfolio.skill",
+  "pk": 3,
+  "fields": {
+    "name": "Pandas",
+    "category": "Analytics Tools",
+    "icon": "skills/panda.png",
+    "order": 0
+  }
+},
+{
+  "model": "portfolio.skill",
+  "pk": 4,
+  "fields": {
+    "name": "Matplotlib",
+    "category": "Visualization Tools",
+    "icon": "skills/chart.png",
+    "order": 3
+  }
+},
+{
+  "model": "portfolio.skill",
+  "pk": 5,
+  "fields": {
+    "name": "Power Bi",
+    "category": "Visualization Tools",
+    "icon": "skills/Powerbi.png",
+    "order": 4
+  }
+},
+{
+  "model": "portfolio.skill",
+  "pk": 6,
+  "fields": {
+    "name": "Jupyter Notebook",
+    "category": "IDE / Notebook Environment",
+    "icon": "skills/Jupyter.jpeg",
+    "order": 5
+  }
+},
+{
+  "model": "portfolio.skill",
+  "pk": 7,
+  "fields": {
+    "name": "MySQL",
+    "category": "Database",
+    "icon": "skills/icons8-mysql-100.png",
+    "order": 5
+  }
+},
+{
+  "model": "portfolio.skill",
+  "pk": 8,
+  "fields": {
+    "name": "Scikit-learn",
+    "category": "Analytics Tools",
+    "icon": "skills/scikit.webp",
+    "order": 3
+  }
+},
+{
+  "model": "portfolio.skill",
+  "pk": 9,
+  "fields": {
+    "name": "Numpy",
+    "category": "Analytics Tools",
+    "icon": "skills/icons8-numpy-96.png",
+    "order": 1
+  }
+},
+{
+  "model": "portfolio.project",
+  "pk": 1,
+  "fields": {
+    "title": "The fraud detection & streaming Analytics",
+    "summary": "Analyzes credit card transactions to identify potentially fraudulent activities using Python, MySQL, and Power BI",
+    "banner": "projects/Fraud_Detection_png.png",
+    "image": "projects/Fraud_Detection_Overview.png",
+    "problem": "The project aimed to identify potentially fraudulent credit card transactions using transaction data and rule-based analysis, while reducing false positives and missed fraud cases.",
+    "description": "1.Cleaned transaction data in Python.\r\n2.Removed exact duplicate rows from the working dataset.\r\n3.Applied two baseline rules: transaction amount greater than 100 and greater than 1,000.\r\n4.Evaluated each rule against the dataset's Class label using true positives, false positives, false negatives, true negatives, precision, and recall.\r\n5.Simulated batch-by-batch processing to demonstrate monitoring metrics.\r\n6.Processed results in MySQL for analysis in Power BI.\r\nValidate key counts across Python, MySQL, and Power BI.",
+    "result": "Tested two simple amount rules on 473 real fraud cases. Amount > 100 caught 26.43% of fraud (125 cases) but wrongly flagged 56,274 normal transactions. Amount > 1,000 wrongly flagged only 2,926, but caught just 1.90% of fraud (9 cases). Precision was very low for both (0.22% and 0.31%), showing that simple amount rules cannot reliably detect fraud and that better methods are needed.",
+    "tech": "SQL, Python, Jupyter-notebook, Pandas ,Scikit-learn, Power Bi, VS code, MYSQL",
+    "analysis": "EDA, Data Cleaning, Rule-Based Fraud Detection, Threshold Analysis, Class Imbalance Analysis, Confusion Matrix Analysis, KPI, Precision and Recall Analysis, Batch based Analysis",
+    "deck_url": "",
+    "notebook_url": "",
+    "dashboard_url": "",
+    "live_url": "",
+    "repo_url": "https://github.com/Sibiart/Fraud-Detection-Streaming-Analytics",
+    "year": 2026,
+    "order": 0
+  }
+},
+{
+  "model": "auth.user",
+  "pk": 1,
+  "fields": {
+    "password": "pbkdf2_sha256$1000000$RT75rxODW9Ew0GwOFsus1q$BN2WGAzO9+FnK8kgx2WyKPsjIhKcpwova9L2jVHn63Y=",
+    "last_login": "2026-10-14T17:16:39.860Z",
+    "is_superuser": true,
+    "username": "Sibi",
+    "first_name": "",
+    "last_name": "",
+    "email": "v.sibimanikandan@gmail.com",
+    "is_staff": true,
+    "is_active": true,
+    "date_joined": "2026-10-14T17:16:17.733Z",
+    "groups": [],
+    "user_permissions": []
+  }
+}
+]

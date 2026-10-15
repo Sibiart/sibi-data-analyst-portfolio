@@ -1,0 +1,11 @@
+{% load portfolio_extras %}
+<div class="entry">
+  <span class="circle lg">
+    {% if e.logo %}<img src="{{ e.logo.url }}" alt="{{ e.organisation }}">{% else %}<span class="ini-s">{{ e.organisation|initial }}</span>{% endif %}
+  </span>
+  <div>
+    <p class="org">{{ e.organisation }}</p>
+    <p class="role"><span class="hl">{{ e.title }}</span> <small>({{ e.period }})</small></p>
+    {% if e.description %}<p class="desc">{{ e.description }}</p>{% endif %}
+  </div>
+</div>
