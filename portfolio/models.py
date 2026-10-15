@@ -31,6 +31,7 @@ class Profile(models.Model):
     location = models.CharField(max_length=100, blank=True)
     linkedin = models.URLField(blank=True)
     github = models.URLField(blank=True)
+    naukri = models.URLField(blank=True, help_text="Naukri profile link")
     kaggle = models.URLField(blank=True)
     tableau = models.URLField(blank=True, help_text="Tableau Public profile")
 
