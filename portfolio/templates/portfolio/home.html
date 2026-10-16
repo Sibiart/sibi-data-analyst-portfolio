@@ -126,6 +126,10 @@
 </section>
 
 {# ================= CONTACT ================= #}
+<section id="contact">
+  <div class="container">
+    <span class="pill"><b>Contact</b> Info</span>
+    <div class="contact-grid">
       <ul class="contact-list">
         {% if profile.phone %}<li><span class="circle"><svg class="ico"><use href="#i-phone"/></svg></span>
           <div><small>Phone (WhatsApp)</small>
@@ -145,6 +149,19 @@
         {% if profile.location %}<li><span class="circle"><svg class="ico"><use href="#i-pin"/></svg></span>
           <div><small>Based in</small>{{ profile.location }}</div></li>{% endif %}
       </ul>
+
+      <div>
+        <h2 class="connect">Let’s <span class="hl">connect</span> and <span class="hl">work together</span>!</h2>
+        {% for m in messages %}<p class="notice">{{ m }}</p>{% endfor %}
+        <form class="card form" method="post" action="{% url 'home' %}#contact">{% csrf_token %}
+          {{ form.as_p }}
+          <button class="btn" type="submit">Send message</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}
       <div>
         <h2 class="connect">Let’s <span class="hl">connect</span> and <span class="hl">work together</span>!</h2>
         {% for m in messages %}<p class="notice">{{ m }}</p>{% endfor %}
